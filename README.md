@@ -16,6 +16,12 @@ This project was archived by the original authors and maintainers of Sourcetrail
 
 This is a **fork** of the Sourcetrail project and I want to keep this project at least buildable.
 
+> [!NOTE]
+> ### Maintenance Status (2026-08-01)
+> For almost two years, I was able to work full-time on Sourcetrail. But now that I have started working on a new customer project, 
+> I won't have as much time for Sourcetrail as I did in the past. I'm still committed to keeping Sourcetrail up to date and buildable, 
+> as I stated in my original statement above, but development will slow down somewhat.
+
 ## __Contents__
 * [Quick Start Guide (Version 2021.4)](DOCUMENTATION.md#getting-started)
 * [Documentation (Version 2021.4)](DOCUMENTATION.md)
