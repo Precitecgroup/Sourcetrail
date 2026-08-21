@@ -29,7 +29,7 @@ public:
 
 	void addResponder(const std::string& name) override;
 
-public slots:
+public Q_SLOTS:
 	void show();
 	void hide();
 

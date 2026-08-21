@@ -13,7 +13,7 @@ public:
 
 	void setMessageBoxParent(QWidget* messageBoxParent);
 
-private slots:
+private Q_SLOTS:
 	void handleHelpPress();
 
 private:

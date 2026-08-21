@@ -63,7 +63,7 @@ public:
 
 	Id getLocationIdOfFirstActiveLocationOfTokenId(Id tokenId) const;
 
-public slots:
+public Q_SLOTS:
 	void clickedSnippetButton();
 
 private:

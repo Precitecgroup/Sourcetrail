@@ -28,7 +28,7 @@ public:
 	QtIndexingDialog(bool isSubWindow, QWidget* parent = nullptr);
 	QSize sizeHint() const override = 0;
 
-signals:
+Q_SIGNALS:
 	void finished();
 	void canceled();
 	void visibleChanged(bool visible);

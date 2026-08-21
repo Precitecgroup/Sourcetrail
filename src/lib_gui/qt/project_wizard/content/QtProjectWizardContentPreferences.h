@@ -18,13 +18,13 @@ class QtComboBoxPlaceHolder: public QComboBox
 {
 	Q_OBJECT
 
-signals:
+Q_SIGNALS:
 	void opened();
 
 public:
 	void showPopup() override
 	{
-		emit opened();
+		Q_EMIT opened();
 	}
 };
 
@@ -44,7 +44,7 @@ public:
 	void save() override;
 	bool check() override;
 
-private slots:
+private Q_SLOTS:
 	void colorSchemeChanged(int index);
 	void javaPathDetectionClicked();
 	void jreSystemLibraryPathsDetectionClicked();

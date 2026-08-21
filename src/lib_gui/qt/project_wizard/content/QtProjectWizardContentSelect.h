@@ -21,7 +21,7 @@ public:
 	void save() override;
 	bool check() override;
 
-signals:
+Q_SIGNALS:
 	void selected(SourceGroupType);
 
 private:

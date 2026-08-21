@@ -74,7 +74,7 @@ QtIndexingStartDialog::QtIndexingStartDialog(
 		{
 			if (p.second->isChecked())
 			{
-				emit setMode(p.first);
+				Q_EMIT setMode(p.first);
 				return;
 			}
 		}
@@ -153,7 +153,7 @@ void QtIndexingStartDialog::resizeEvent(QResizeEvent* event)
 
 void QtIndexingStartDialog::closeEvent(QCloseEvent*  /*event*/)
 {
-	emit QtIndexingDialog::canceled();
+	Q_EMIT QtIndexingDialog::canceled();
 }
 
 void QtIndexingStartDialog::keyPressEvent(QKeyEvent* event)
@@ -177,15 +177,15 @@ void QtIndexingStartDialog::onStartPressed()
 	{
 		if (p.second->isChecked())
 		{
-			emit startIndexing(p.first);
+			Q_EMIT startIndexing(p.first);
 			return;
 		}
 	}
 
-	emit finished();
+	Q_EMIT finished();
 }
 
 void QtIndexingStartDialog::onCancelPressed()
 {
-	emit canceled();
+	Q_EMIT canceled();
 }

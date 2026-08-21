@@ -8,5 +8,5 @@ void QtPushButton::mouseDoubleClickEvent(QMouseEvent *event)
 {
 	QPushButton::mouseDoubleClickEvent(event);
 	
-	emit doubleClicked();	
+	Q_EMIT doubleClicked();	
 }

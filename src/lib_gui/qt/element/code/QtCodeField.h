@@ -130,7 +130,7 @@ protected:
 
 	QAction* m_openInTabAction;
 
-protected slots:
+protected Q_SLOTS:
 	void openInTab();
 
 private:

@@ -21,7 +21,7 @@ class QtFocusInFilter: public QObject
 public:
 	QtFocusInFilter(QObject* parent = Q_NULLPTR);
 
-signals:
+Q_SIGNALS:
 	void focusIn();
 
 protected:
@@ -43,13 +43,13 @@ public:
 
 	void addResponder(const std::string& name);
 
-signals:
+Q_SIGNALS:
 	void closePressed();
 
-public slots:
+public Q_SLOTS:
 	void setFocus();
 
-private slots:
+private Q_SLOTS:
 	void searchQueryChanged();
 	void findMatches();
 	void returnPressed();

@@ -19,7 +19,7 @@ public:
 protected:
 	QtListBox* getListBox() override;
 
-private slots:
+private Q_SLOTS:
 	void handleButtonPress();
 
 private:

@@ -184,7 +184,7 @@ void QtHistoryList::showPopup(QPoint pos)
 
 void QtHistoryList::closeEvent(QCloseEvent*  /*event*/)
 {
-	emit closed();
+	Q_EMIT closed();
 }
 
 void QtHistoryList::onItemClicked(QListWidgetItem* item)

@@ -13,7 +13,7 @@ class QtCodeFileTitleBar: public QtHoverButton
 {
 	Q_OBJECT
 
-signals:
+Q_SIGNALS:
 	void minimize();
 	void snippet();
 	void maximize();
@@ -37,7 +37,7 @@ public:
 
 	void updateFromOther(const QtCodeFileTitleBar* other);
 
-private slots:
+private Q_SLOTS:
 	void clickedTitleBar();
 	void clickedExpandButton();
 	void clickedCollapseButton();

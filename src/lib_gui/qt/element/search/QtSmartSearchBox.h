@@ -15,13 +15,13 @@ class QtSearchElement: public QPushButton
 {
 	Q_OBJECT
 
-signals:
+Q_SIGNALS:
 	void wasChecked(QtSearchElement*);
 
 public:
 	QtSearchElement(const QString& text, QWidget* parent);
 
-private slots:
+private Q_SLOTS:
 	void onChecked(bool);
 };
 
@@ -47,12 +47,12 @@ public:
 	
 	void refreshStyle();
 	
-signals:
+Q_SIGNALS:
 	void autocomplete(const std::string& query, NodeTypeSet acceptedNodeTypes);
 	void search(const std::vector<SearchMatch>& matches, NodeTypeSet acceptedNodeTypes);
 	void fullTextSearch(const std::string& query, bool caseSensitive);
 	
-public slots:
+public Q_SLOTS:
 	void startSearch();
 
 protected:
@@ -69,7 +69,7 @@ protected:
 	void mousePressEvent(QMouseEvent* event) override;
 	void mouseReleaseEvent(QMouseEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void onTextEdited(const QString& text);
 	void onTextChanged(const QString& text);
 

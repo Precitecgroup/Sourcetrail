@@ -18,7 +18,7 @@ public:
 
 	bool isHovered() const;
 
-public slots:
+public Q_SLOTS:
 	void show();
 	void hide(bool force = false);
 

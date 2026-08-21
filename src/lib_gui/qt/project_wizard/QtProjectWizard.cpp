@@ -830,13 +830,13 @@ void QtProjectWizard::cancelSourceGroup()
 void QtProjectWizard::cancelWizard()
 {
 	m_windowStack.clearWindows();
-	emit canceled();
+	Q_EMIT canceled();
 }
 
 void QtProjectWizard::finishWizard()
 {
 	m_windowStack.clearWindows();
-	emit finished();
+	Q_EMIT finished();
 }
 
 void QtProjectWizard::windowStackChanged()

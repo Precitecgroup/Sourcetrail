@@ -23,7 +23,7 @@ public:
 	void save() override;
 	bool check() override;
 
-public slots:
+public Q_SLOTS:
 	void onProjectNameEdited(QString text);
 
 private:

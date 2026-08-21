@@ -13,6 +13,6 @@ QtExpanderButton::QtExpanderButton(const QString &text, QWidget *parent)
 	connect(this, &QToolButton::toggled, this, [this](bool checked)
 	{
 		setArrowType(checked ? Qt::DownArrow : Qt::RightArrow);
-		emit expanded(checked);
+		Q_EMIT expanded(checked);
 	});
 }

@@ -24,14 +24,14 @@ public:
 	bool getReadOnly() const;
 	void setReadOnly(bool readOnly);
 
-public slots:
+public Q_SLOTS:
 	void setFocus();
 
 protected:
 	virtual QtListBox* getListBox() = 0;
 	void selectItem();
 
-private slots:
+private Q_SLOTS:
 	void handleFocus();
 
 private:

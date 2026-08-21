@@ -10,7 +10,7 @@ void QtHoverButton::enterEvent(QEnterEvent * /*event*/)
 {
 	if (isEnabled())
 	{
-		emit hoveredIn(this);
+		Q_EMIT hoveredIn(this);
 	}
 }
 
@@ -18,6 +18,6 @@ void QtHoverButton::leaveEvent(QEvent*  /*event*/)
 {
 	if (isEnabled())
 	{
-		emit hoveredOut(this);
+		Q_EMIT hoveredOut(this);
 	}
 }

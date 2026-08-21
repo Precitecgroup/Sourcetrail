@@ -255,7 +255,7 @@ void QtGraphicsView::resizeEvent(QResizeEvent* event)
 	m_zoomOutButton->setIconSize(QSize(15, 15));
 	m_legendButton->setIconSize(QSize(10, 10));
 
-	emit resized();
+	Q_EMIT resized();
 }
 
 void QtGraphicsView::mousePressEvent(QMouseEvent* event)
@@ -278,7 +278,7 @@ void QtGraphicsView::mouseReleaseEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton && !itemAt(event->pos()) && event->pos() == m_last)
 	{
-		emit emptySpaceClicked();
+		Q_EMIT emptySpaceClicked();
 	}
 
 	QGraphicsView::mouseReleaseEvent(event);
@@ -529,7 +529,7 @@ void QtGraphicsView::contextMenuEvent(QContextMenuEvent* event)
 void QtGraphicsView::focusInEvent(QFocusEvent*  /*event*/)
 {
 	m_focusIndicator->show();
-	emit focusIn();
+	Q_EMIT focusIn();
 
 	MessageFocusView(MessageFocusView::ViewType::GRAPH).dispatch();
 }
@@ -537,7 +537,7 @@ void QtGraphicsView::focusInEvent(QFocusEvent*  /*event*/)
 void QtGraphicsView::focusOutEvent(QFocusEvent*  /*event*/)
 {
 	m_focusIndicator->hide();
-	emit focusOut();
+	Q_EMIT focusOut();
 }
 
 void QtGraphicsView::updateTimer()

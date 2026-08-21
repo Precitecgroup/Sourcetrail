@@ -102,7 +102,7 @@ void QtProjectWizardWindow::handleNext()
 		}
 	}
 
-	emit next();
+	Q_EMIT next();
 }
 
 void QtProjectWizardWindow::handlePrevious()
@@ -112,5 +112,5 @@ void QtProjectWizardWindow::handlePrevious()
 		m_content->save();
 	}
 
-	emit previous();
+	Q_EMIT previous();
 }

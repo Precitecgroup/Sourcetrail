@@ -21,7 +21,7 @@ bool QtFocusInFilter::eventFilter(QObject* obj, QEvent* event)
 	if (lineEdit && event->type() == QEvent::FocusIn &&
 		dynamic_cast<QFocusEvent*>(event)->reason() == Qt::MouseFocusReason)
 	{
-		emit focusIn();
+		Q_EMIT focusIn();
 	}
 
 	return QObject::eventFilter(obj, event);
@@ -106,7 +106,7 @@ QtScreenSearchBox::QtScreenSearchBox(
 		m_closeButton->setIconSize(QSize(15, 15));
 		layout->addWidget(m_closeButton);
 
-		connect(m_closeButton, &QPushButton::clicked, [this]() { emit closePressed(); });
+		connect(m_closeButton, &QPushButton::clicked, [this]() { Q_EMIT closePressed(); });
 	}
 
 	m_timer = new QTimer(this);

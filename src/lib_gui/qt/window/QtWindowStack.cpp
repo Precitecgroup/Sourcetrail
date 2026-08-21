@@ -39,7 +39,7 @@ void QtWindowStack::pushWindow(QtWindowStackElement* window)
 
 	m_stack.push_back(window);
 
-	emit push();
+	Q_EMIT push();
 }
 
 void QtWindowStack::popWindow()
@@ -50,7 +50,7 @@ void QtWindowStack::popWindow()
 		m_stack.back()->deleteLater();
 		m_stack.pop_back();
 
-		emit pop();
+		Q_EMIT pop();
 	}
 
 	if (m_stack.size())
@@ -59,7 +59,7 @@ void QtWindowStack::popWindow()
 	}
 	else
 	{
-		emit empty();
+		Q_EMIT empty();
 	}
 }
 
@@ -88,5 +88,5 @@ void QtWindowStack::clearWindows()
 
 	m_stack.clear();
 
-	emit empty();
+	Q_EMIT empty();
 }

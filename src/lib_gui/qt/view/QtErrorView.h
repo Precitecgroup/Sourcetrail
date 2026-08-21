@@ -42,7 +42,7 @@ public:
 	ErrorFilter getErrorFilter() const override;
 	void setErrorFilter(const ErrorFilter& filter) override;
 
-private slots:
+private Q_SLOTS:
 	void errorFilterChanged(int i = 0);
 
 private:

@@ -72,7 +72,7 @@ public:
 protected:
 	void resizeEvent(QResizeEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void updateSnippetTitleAndScrollBarSlot();
 	void updateSnippetTitleAndScrollBar(int value = 0);
 

@@ -19,7 +19,7 @@ class QtWindowStack: public QObject
 {
 	Q_OBJECT
 
-signals:
+Q_SIGNALS:
 	void empty();
 	void pop();
 	void push();
@@ -33,7 +33,7 @@ public:
 
 	void centerSubWindows();
 
-public slots:
+public Q_SLOTS:
 	void pushWindow(QtWindowStackElement* window);
 	void popWindow();
 	void clearWindows();

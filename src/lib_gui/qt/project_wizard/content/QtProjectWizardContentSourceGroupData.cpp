@@ -85,12 +85,12 @@ void QtProjectWizardContentSourceGroupData::editedName(QString name)
 		name = "(" + name + ")";
 	}
 
-	emit nameUpdated(name);
+	Q_EMIT nameUpdated(name);
 }
 
 void QtProjectWizardContentSourceGroupData::changedStatus(bool  /*checked*/)
 {
-	emit statusUpdated(
+	Q_EMIT statusUpdated(
 		m_status->isChecked() ? SourceGroupStatusType::ENABLED : SourceGroupStatusType::DISABLED);
 
 	editedName(m_name->text());

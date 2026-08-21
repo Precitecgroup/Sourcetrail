@@ -117,11 +117,11 @@ void QtLocationPicker::onHandleButtonPressed()
 		m_data->setText(QString::fromStdString(
 			utility::getAsRelativeIfShorter(FilePath(fileName.toStdString()), m_relativeRootDirectory)
 				.str()));
-		emit locationPicked();
+		Q_EMIT locationPicked();
 	}
 }
 
 void QtLocationPicker::onDataTextChanged(const QString& text)
 {
-	emit textChanged(text);
+	Q_EMIT textChanged(text);
 }

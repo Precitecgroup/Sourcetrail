@@ -45,7 +45,7 @@ protected:
 
 	QtListWidget* m_list;
 
-protected slots:
+protected Q_SLOTS:
 	QtListBoxItem* addListBoxItem();
 	void removeListBoxItem();
 
@@ -53,7 +53,7 @@ protected slots:
 	void canceledEditDialog();
 	void savedEditDialog();
 
-private slots:
+private Q_SLOTS:
 	void doubleClicked(const QModelIndex& index);
 
 private:

@@ -31,7 +31,7 @@ public:
 	void selectTab(bool next) override;
 	void updateTab(TabId tabId, const std::vector<SearchMatch>& matches) override;
 
-private slots:
+private Q_SLOTS:
 	void addTab();
 	void insertTab(bool showTab, const SearchMatch& match);
 	void changedTab(int index);

@@ -28,7 +28,7 @@ public:
 	static void enableUndo(bool enabled);
 	static void enableRedo(bool enabled);
 
-private slots:
+private Q_SLOTS:
 	static void undoActionTriggered();
 	static void redoActionTriggered();
 

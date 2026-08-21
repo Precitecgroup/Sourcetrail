@@ -23,11 +23,11 @@ public:
 	void save() override;
 	bool check() override;
 
-signals:
+Q_SIGNALS:
 	void nameUpdated(QString);
 	void statusUpdated(SourceGroupStatusType);
 
-private slots:
+private Q_SLOTS:
 	void editedName(QString name);
 	void changedStatus(bool checked);
 

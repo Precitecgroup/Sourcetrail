@@ -16,7 +16,7 @@ using namespace utility;
 void QtListWidget::mouseDoubleClickEvent(QMouseEvent*  /*event*/)
 {
 	QModelIndex index;
-	emit doubleClicked(index);
+	Q_EMIT doubleClicked(index);
 }
 
 void QtListWidget::wheelEvent(QWheelEvent* event)

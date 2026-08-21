@@ -37,7 +37,7 @@ void QtTabBar::contextMenuEvent(QContextMenuEvent* event)
 	connect(closeTabAction, &QAction::triggered, this, [&]()
 	{
 		if (int tabIdx = tabAt(event->pos()); tabIdx != -1)
-			emit closeTab(tabIdx);
+			Q_EMIT closeTab(tabIdx);
 	});
 
 	QAction *closeTabsToRightAction = new QAction(tr("Close tabs to the right"), this);
@@ -49,7 +49,7 @@ void QtTabBar::contextMenuEvent(QContextMenuEvent* event)
 		if (int tabIdx = tabAt(event->pos()); tabIdx != -1)
 		{
 			LOG_INFO("Handling closeTabs... emitting signal to close tabs right of tab nr. " + std::to_string(tabIdx));
-			emit closeTabsToRight(tabIdx);
+			Q_EMIT closeTabsToRight(tabIdx);
 		}
 	});
 
@@ -62,7 +62,7 @@ void QtTabBar::mouseReleaseEvent(QMouseEvent *event)
 	if (event->button() == Qt::MiddleButton)
 	{
 		if (int tabIdx = tabAt(event->pos()); tabIdx != -1)
-			emit closeTab(tabIdx);
+			Q_EMIT closeTab(tabIdx);
 	}
 	QTabBar::mouseReleaseEvent(event);
 }

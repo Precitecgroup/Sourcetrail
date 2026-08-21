@@ -47,7 +47,7 @@ public:
 	void setPreviousDefault(bool isDefault);
 	void setCloseDefault(bool isDefault);
 
-signals:
+Q_SIGNALS:
 	void finished();
 	void canceled();
 
@@ -77,7 +77,7 @@ protected:
 	QPushButton* m_previousButton = nullptr;
 	QPushButton* m_closeButton = nullptr;
 
-public slots:
+public Q_SLOTS:
 	void handleNextPress(bool);
 	void handlePreviousPress();
 	void handleClosePress();

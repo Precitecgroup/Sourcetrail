@@ -61,7 +61,7 @@ public:
 
 	void ensureLocationIdVisible(Id locationId, bool animated);
 
-private slots:
+private Q_SLOTS:
 	void clickedTitle();
 	void clickedFooter();
 

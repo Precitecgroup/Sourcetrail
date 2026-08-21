@@ -29,7 +29,7 @@ public:
 
 	bool check() override;
 
-private slots:
+private Q_SLOTS:
 	void buttonClicked();
 	void savedFilesDialog();
 

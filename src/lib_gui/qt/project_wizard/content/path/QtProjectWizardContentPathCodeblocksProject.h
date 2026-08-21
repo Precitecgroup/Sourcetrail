@@ -24,7 +24,7 @@ public:
 	QString getFileNamesTitle() const override;
 	QString getFileNamesDescription() const override;
 
-private slots:
+private Q_SLOTS:
 	void pickedPath();
 
 private:

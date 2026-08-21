@@ -30,7 +30,7 @@ public:
 	void hoverIn();
 	void hoverOut();
 
-signals:
+Q_SIGNALS:
 	void hoveredIn(QPushButton*);
 	void hoveredOut(QPushButton*);
 

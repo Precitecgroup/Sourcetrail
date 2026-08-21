@@ -19,10 +19,10 @@ public:
 
 	void operator()(std::function<void()> callback);
 
-signals:
+Q_SIGNALS:
 	void signalExecution();
 
-private slots:
+private Q_SLOTS:
 	void execute();
 
 private:

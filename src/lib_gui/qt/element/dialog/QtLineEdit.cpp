@@ -4,6 +4,6 @@ QtLineEdit::QtLineEdit(QWidget* parent): QLineEdit(parent) {}
 
 void QtLineEdit::focusInEvent(QFocusEvent* event)
 {
-	emit focus();
+	Q_EMIT focus();
 	QLineEdit::focusInEvent(event);
 }

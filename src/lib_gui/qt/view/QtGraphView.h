@@ -74,7 +74,7 @@ public:
 
 	void ensureNodeVisible(QtGraphNode *node) override;
 
-private slots:
+private Q_SLOTS:
 	void updateScrollBars();
 	void finishedTransition();
 	void clickedInEmptySpace();

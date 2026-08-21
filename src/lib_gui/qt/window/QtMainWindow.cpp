@@ -446,12 +446,12 @@ void QtMainWindow::keyPressEvent(QKeyEvent *event)
 			break;
 
 		case Action::Cancel:
-			emit hideScreenSearch();
-			emit hideIndexingDialog();
+			Q_EMIT hideScreenSearch();
+			Q_EMIT hideIndexingDialog();
 			break;
 
 		case Action::SearchScreen:
-			emit showScreenSearch();
+			Q_EMIT showScreenSearch();
 			break;
 
 		case Action::RefreshUI:
@@ -663,7 +663,7 @@ void QtMainWindow::findFulltext()
 
 void QtMainWindow::findOnScreen()
 {
-	emit showScreenSearch();
+	Q_EMIT showScreenSearch();
 }
 
 void QtMainWindow::codeReferencePrevious()

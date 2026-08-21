@@ -71,7 +71,7 @@ class QtAutocompletionList: public QCompleter
 {
 	Q_OBJECT
 
-signals:
+Q_SIGNALS:
 	void matchHighlighted(const SearchMatch&);
 	void matchActivated(const SearchMatch&);
 
@@ -83,7 +83,7 @@ public:
 
 	const SearchMatch* getSearchMatchAt(int idx) const;
 
-private slots:
+private Q_SLOTS:
 	void onHighlighted(const QModelIndex& index);
 	void onActivated(const QModelIndex& index);
 

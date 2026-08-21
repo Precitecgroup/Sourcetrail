@@ -27,7 +27,7 @@ public:
 	QTreeWidgetItem* getTreeWidgetItem() const;
 	void setTreeWidgetItem(QTreeWidgetItem* treeWidgetItem);
 
-public slots:
+public Q_SLOTS:
 	void commentToggled();
 
 protected:
@@ -37,7 +37,7 @@ protected:
 	void enterEvent(QEnterEvent* event) override;
 	void leaveEvent(QEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void activateClicked();
 	void activateDoubleClicked();
 	void editClicked();

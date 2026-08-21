@@ -12,7 +12,7 @@ public:
 
 	void populate(QGridLayout* layout, int& row) override;
 
-private slots:
+private Q_SLOTS:
 	static void handleVSCDBClicked();
 };
 

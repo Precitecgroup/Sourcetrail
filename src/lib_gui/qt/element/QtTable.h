@@ -19,7 +19,7 @@ public:
 
 	bool hasSelection() const;
 
-protected slots:
+protected Q_SLOTS:
 	void columnResized(int column, int oldWidth, int newWidth);
 
 protected:

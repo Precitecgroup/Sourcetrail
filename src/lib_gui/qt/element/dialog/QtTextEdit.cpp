@@ -12,6 +12,6 @@ void QtTextEdit::setViewportMargins(int left, int top, int right, int bottom)
 
 void QtTextEdit::focusInEvent(QFocusEvent* event)
 {
-	emit focus();
+	Q_EMIT focus();
 	QTextBrowser::focusInEvent(event);
 }

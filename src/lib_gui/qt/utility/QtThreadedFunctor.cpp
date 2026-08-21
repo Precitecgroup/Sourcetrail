@@ -16,7 +16,7 @@ void QtThreadedFunctorHelper::operator()(std::function<void ()> callback)
 
 	m_freeCallbacks.acquire();
 	m_callback = callback;
-	emit signalExecution();
+	Q_EMIT signalExecution();
 }
 
 void QtThreadedFunctorHelper::execute()

@@ -10,7 +10,7 @@ class QtHoverButton: public QPushButton
 public:
 	QtHoverButton(QWidget* parent = nullptr);
 
-signals:
+Q_SIGNALS:
 	void hoveredIn(QPushButton*);
 	void hoveredOut(QPushButton*);
 

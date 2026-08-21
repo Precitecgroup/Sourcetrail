@@ -27,7 +27,7 @@ protected:
 	void handleClose() override;
 	void handleNext() override;
 
-private slots:
+private Q_SLOTS:
 	void filterOrOrderChanged(int index);
 	void treeItemClicked(QTreeWidgetItem* item, int column);
 

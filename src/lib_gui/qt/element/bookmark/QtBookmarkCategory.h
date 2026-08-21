@@ -29,14 +29,14 @@ public:
 
 	void updateArrow();
 
-public slots:
+public Q_SLOTS:
 	void expandClicked();
 
 protected:
 	void enterEvent(QEnterEvent* event) override;
 	void leaveEvent(QEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void deleteClicked();
 
 private:

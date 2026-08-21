@@ -66,7 +66,7 @@ public:
 
 	void setParentWindow(QtWindow* window);
 
-private slots:
+private Q_SLOTS:
 	void showUnknownProgress(const std::string& title, const std::string& message, bool stacked);
 	void hideUnknownProgress();
 

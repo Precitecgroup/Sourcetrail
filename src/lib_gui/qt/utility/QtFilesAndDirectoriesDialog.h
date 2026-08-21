@@ -12,7 +12,7 @@ public:
 	QtFilesAndDirectoriesDialog(QWidget* parent);
 	~QtFilesAndDirectoriesDialog() override;
 
-public slots:
+public Q_SLOTS:
 	void chooseClicked();
 
 private:

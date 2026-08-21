@@ -247,7 +247,7 @@ void QtProjectWizardContentSelect::save()
 			}
 		}
 	}
-	emit selected(selectedType);
+	Q_EMIT selected(selectedType);
 }
 
 bool QtProjectWizardContentSelect::check()

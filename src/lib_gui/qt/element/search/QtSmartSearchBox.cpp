@@ -28,7 +28,7 @@ QtSearchElement::QtSearchElement(const QString& text, QWidget* parent)
 
 void QtSearchElement::onChecked(bool)
 {
-	emit wasChecked(this);
+	Q_EMIT wasChecked(this);
 }
 
 void QtSmartSearchBox::startSearch()
@@ -70,7 +70,7 @@ void QtSmartSearchBox::startSearch()
 		}
 	}
 
-	emit search(utility::toVector(m_matches), getMatchAcceptedNodeTypes());
+	Q_EMIT search(utility::toVector(m_matches), getMatchAcceptedNodeTypes());
 }
 
 QtSmartSearchBox::QtSmartSearchBox(QWidget* parent)
@@ -1071,7 +1071,7 @@ void QtSmartSearchBox::requestAutoCompletions()
 {
 	if (!text().isEmpty() && !text().startsWith(SearchMatch::FULLTEXT_SEARCH_CHARACTER))
 	{
-		emit autocomplete(text().toStdString(), getMatchAcceptedNodeTypes());
+		Q_EMIT autocomplete(text().toStdString(), getMatchAcceptedNodeTypes());
 	}
 	else
 	{
@@ -1104,7 +1104,7 @@ void QtSmartSearchBox::startFullTextSearch()
 
 		caseSensitive = true;
 	}
-	emit fullTextSearch(term, caseSensitive);
+	Q_EMIT fullTextSearch(term, caseSensitive);
 }
 
 std::deque<SearchMatch> QtSmartSearchBox::getMatchesForInput(const std::string& text) 

@@ -37,7 +37,7 @@ protected:
 
 	void refresh() override;
 
-private slots:
+private Q_SLOTS:
 	void clickedTitle();
 	void openInTab();
 

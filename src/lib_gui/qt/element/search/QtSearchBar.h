@@ -31,7 +31,7 @@ public:
 
 	void refreshStyle();
 
-private slots:
+private Q_SLOTS:
 	static void homeButtonClicked();
 
 	static void requestAutocomplete(const std::string& query, NodeTypeSet acceptedNodeTypes);

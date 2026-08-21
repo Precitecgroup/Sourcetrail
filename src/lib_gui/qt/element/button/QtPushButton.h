@@ -10,7 +10,7 @@ class QtPushButton : public QPushButton
 public:
 	QtPushButton();
 	
-signals:
+Q_SIGNALS:
 	void doubleClicked();
 	
 protected:

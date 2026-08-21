@@ -14,7 +14,7 @@ class QtProjectWizardContentPaths: public QtProjectWizardContent
 {
 	Q_OBJECT
 
-signals:
+Q_SIGNALS:
 	void showSourceFiles();
 
 public:
@@ -46,7 +46,7 @@ protected:
 
 	bool m_makePathsRelativeToProjectFileLocation = true;
 
-private slots:
+private Q_SLOTS:
 	void detectionClicked();
 
 private:

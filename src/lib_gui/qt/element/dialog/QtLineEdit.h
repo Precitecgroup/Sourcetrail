@@ -10,7 +10,7 @@ class QtLineEdit: public QLineEdit
 public:
 	QtLineEdit(QWidget* parent = nullptr);
 
-signals:
+Q_SIGNALS:
 	void focus();
 
 protected:

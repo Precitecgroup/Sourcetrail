@@ -50,7 +50,7 @@ class QtHistoryList: public QWidget
 {
 	Q_OBJECT
 
-signals:
+Q_SIGNALS:
 	void closed();
 
 public:
@@ -61,7 +61,7 @@ public:
 protected:
 	void closeEvent(QCloseEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void onItemClicked(QListWidgetItem* item);
 
 private:

@@ -38,10 +38,10 @@ QSize QtUnknownProgressDialog::sizeHint() const
 
 void QtUnknownProgressDialog::closeEvent(QCloseEvent*  /*event*/)
 {
-	emit visibleChanged(false);
+	Q_EMIT visibleChanged(false);
 }
 
 void QtUnknownProgressDialog::onHidePressed()
 {
-	emit visibleChanged(false);
+	Q_EMIT visibleChanged(false);
 }

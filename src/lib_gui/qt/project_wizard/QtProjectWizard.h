@@ -24,7 +24,7 @@ public:
 	QtProjectWizard(QWidget* parent = nullptr);
 	QSize sizeHint() const override;
 
-public slots:
+public Q_SLOTS:
 	void newProject();
 
 	void newProjectFromCDB(const FilePath& filePath);
@@ -60,7 +60,7 @@ private:
 	QListWidget* m_sourceGroupList;
 	QWidget* m_contentWidget = nullptr;
 
-private slots:
+private Q_SLOTS:
 	void generalButtonClicked();
 	void selectedSourceGroupChanged(int index);
 	void selectedSourceGroupNameChanged(const QString& name);

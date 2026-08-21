@@ -307,17 +307,17 @@ void QtWindow::windowReady() {}
 
 void QtWindow::handleNext()
 {
-	emit finished();
+	Q_EMIT finished();
 }
 
 void QtWindow::handlePrevious()
 {
-	emit previous();
+	Q_EMIT previous();
 }
 
 void QtWindow::handleClose()
 {
-	emit canceled();
+	Q_EMIT canceled();
 }
 
 void QtWindow::setupDone()

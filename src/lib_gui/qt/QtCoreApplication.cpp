@@ -7,7 +7,7 @@ QtCoreApplication::QtCoreApplication(int argc, char** argv): QCoreApplication(ar
 void QtCoreApplication::handleMessage(MessageQuitApplication*  /*message*/)
 {
 	std::cout << "Quitting" << std::endl;
-	emit quit();
+	Q_EMIT quit();
 }
 
 void QtCoreApplication::handleMessage(MessageIndexingStatus* message)

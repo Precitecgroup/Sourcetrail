@@ -23,7 +23,7 @@ public:
 	QtViewToggle(View* view, QWidget* parent = nullptr);
 	void clear();
 
-public slots:
+public Q_SLOTS:
 	void toggledByAction();
 	void toggledByUI();
 
@@ -84,7 +84,7 @@ public:
 
 	void alert();
 	
-signals:
+Q_SIGNALS:
 	void showScreenSearch();
 	void hideScreenSearch();
 	void hideIndexingDialog();
@@ -98,7 +98,7 @@ protected:
 
 	bool focusNextPrevChild(bool next) override;
 
-public slots:
+public Q_SLOTS:
 	void about();
 	void openSettings();
 	static void showChangelog();
@@ -155,7 +155,7 @@ public slots:
 	void toggleView(View* view, bool fromMenu);
 	void saveAsImage();
 
-private slots:
+private Q_SLOTS:
 	void toggleShowDockWidgetTitleBars();
 
 	static void showBookmarkCreator();

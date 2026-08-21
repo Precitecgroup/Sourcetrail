@@ -35,9 +35,9 @@ public:
 
 	bool isListening() const;
 
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
 	void acceptConnection();
 	void startRead();
 

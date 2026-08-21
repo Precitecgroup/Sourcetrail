@@ -10,7 +10,7 @@ class QtExpanderButton : public QToolButton
 public:
 	QtExpanderButton(const QString &text, QWidget *parent = nullptr);
 
-signals:
+Q_SIGNALS:
 	void expanded(bool expanded);
 };
 

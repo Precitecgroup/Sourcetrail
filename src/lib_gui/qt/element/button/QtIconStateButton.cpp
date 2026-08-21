@@ -66,7 +66,7 @@ void QtIconStateButton::enterEvent(QEnterEvent *event)
 
 		if (event)
 		{
-			emit hoveredIn(this);
+			Q_EMIT hoveredIn(this);
 		}
 	}
 }
@@ -85,7 +85,7 @@ void QtIconStateButton::leaveEvent(QEvent* event)
 
 		if (event)
 		{
-			emit hoveredOut(this);
+			Q_EMIT hoveredOut(this);
 		}
 	}
 }

@@ -12,7 +12,7 @@ public:
 	bool event(QEvent* event) override;
 	static int exec();
 
-private slots:
+private Q_SLOTS:
 	static void onApplicationStateChanged(Qt::ApplicationState state);
 };
 

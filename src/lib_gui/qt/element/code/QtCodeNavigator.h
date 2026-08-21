@@ -102,10 +102,10 @@ public:
 	void scrollTo(const CodeScrollParams& params, bool animated, bool focusTarget);
 	void scrollToFocus();
 
-public slots:
+public Q_SLOTS:
 	void scrolled(int value);
 
-signals:
+Q_SIGNALS:
 	void focusIn();
 	void focusOut();
 
@@ -116,7 +116,7 @@ protected:
 	void focusInEvent(QFocusEvent* event) override;
 	void focusOutEvent(QFocusEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void focusChanged(QWidget* from, QWidget* to);
 
 	static void previousReference();

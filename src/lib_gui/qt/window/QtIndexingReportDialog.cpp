@@ -110,7 +110,7 @@ void QtIndexingReportDialog::updateErrorCount(size_t errorCount, size_t fatalCou
 
 void QtIndexingReportDialog::closeEvent(QCloseEvent*  /*event*/)
 {
-	emit QtIndexingDialog::canceled();
+	Q_EMIT QtIndexingDialog::canceled();
 }
 
 void QtIndexingReportDialog::keyPressEvent(QKeyEvent* event)
@@ -133,15 +133,15 @@ void QtIndexingReportDialog::onConfirmPressed()
 {
 	MessageErrorsHelpMessage().dispatch();
 
-	emit QtIndexingDialog::finished();
+	Q_EMIT QtIndexingDialog::finished();
 }
 
 void QtIndexingReportDialog::onDiscardPressed()
 {
-	emit QtIndexingDialog::canceled();
+	Q_EMIT QtIndexingDialog::canceled();
 }
 
 void QtIndexingReportDialog::onStartInDepthPressed()
 {
-	emit requestReindexing();
+	Q_EMIT requestReindexing();
 }

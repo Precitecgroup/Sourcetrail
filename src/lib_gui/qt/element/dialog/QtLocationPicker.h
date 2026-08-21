@@ -27,7 +27,7 @@ public:
 
 	void setRelativeRootDirectory(const FilePath& dir);
 
-signals:
+Q_SIGNALS:
 	void locationPicked();
 	void textChanged(const QString& text);
 

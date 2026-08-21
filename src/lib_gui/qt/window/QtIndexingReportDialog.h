@@ -7,7 +7,7 @@ class QtIndexingReportDialog: public QtIndexingDialog
 {
 	Q_OBJECT
 
-signals:
+Q_SIGNALS:
 	void requestReindexing();
 
 public:

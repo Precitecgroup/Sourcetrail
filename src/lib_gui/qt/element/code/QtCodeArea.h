@@ -115,7 +115,7 @@ protected:
 	void focusTokenIds(const std::vector<Id>& tokenIds) override;
 	void defocusTokenIds(const std::vector<Id>& tokenIds) override;
 
-private slots:
+private Q_SLOTS:
 	void updateLineNumberAreaWidth(int newBlockCount = 0);
 	void updateLineNumberArea(QRect, int);
 	void setIDECursorPosition();

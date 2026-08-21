@@ -12,7 +12,7 @@ public:
 
 	void setViewportMargins(int left, int top, int right, int bottom);
 
-signals:
+Q_SIGNALS:
 	void focus();
 
 protected:

@@ -25,7 +25,7 @@ public:
 	// BookmarkView implementation
 	void setCreateButtonState(const MessageBookmarkButtonState::ButtonState& state) override;
 
-private slots:
+private Q_SLOTS:
 	void createBookmarkClicked();
 	static void showBookmarksClicked();
 

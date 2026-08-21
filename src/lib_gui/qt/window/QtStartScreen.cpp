@@ -175,7 +175,7 @@ void QtStartScreen::handleButtonClicked()
 	{
 		MessageLoadProject(recentProjectPath).dispatch();
 
-		emit finished();
+		Q_EMIT finished();
 	}
 	else
 	{

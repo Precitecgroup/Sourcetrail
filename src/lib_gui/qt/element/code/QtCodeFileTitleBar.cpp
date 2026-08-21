@@ -265,34 +265,34 @@ void QtCodeFileTitleBar::clickedTitleBar()
 {
 	if (m_collapseButton->isVisible())
 	{
-		emit minimize();
+		Q_EMIT minimize();
 	}
 	else if (m_expandButton->isVisible())
 	{
-		emit snippet();
+		Q_EMIT snippet();
 	}
 	else
 	{
-		emit maximize();
+		Q_EMIT maximize();
 	}
 }
 
 void QtCodeFileTitleBar::clickedExpandButton()
 {
-	emit snippet();
+	Q_EMIT snippet();
 }
 
 void QtCodeFileTitleBar::clickedCollapseButton()
 {
-	emit minimize();
+	Q_EMIT minimize();
 }
 
 void QtCodeFileTitleBar::clickedSnippetButton()
 {
-	emit snippet();
+	Q_EMIT snippet();
 }
 
 void QtCodeFileTitleBar::clickedMaximizeButton()
 {
-	emit maximize();
+	Q_EMIT maximize();
 }

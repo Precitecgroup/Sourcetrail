@@ -31,7 +31,7 @@ public:
 protected:
 	void resizeEvent(QResizeEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	static void showStatus();
 	static void showErrors();
 	static void clickedIndexingProgress();

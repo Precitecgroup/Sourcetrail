@@ -10,7 +10,7 @@ class QtTabBar: public QTabBar
 public:
 	QtTabBar(QWidget* parent = nullptr);
 
-signals:
+Q_SIGNALS:
 	void closeTabsToRight(int tabIdx);
 	void closeTab(int tabIdx);
 

@@ -57,14 +57,14 @@ protected:
 	void focusInEvent(QFocusEvent* event) override;
 	void focusOutEvent(QFocusEvent* event) override;
 
-signals:
+Q_SIGNALS:
 	void emptySpaceClicked();
 	void resized();
 
 	void focusIn();
 	void focusOut();
 
-private slots:
+private Q_SLOTS:
 	void updateTimer();
 	void stopTimer();
 

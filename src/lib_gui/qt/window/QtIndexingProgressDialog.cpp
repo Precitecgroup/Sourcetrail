@@ -96,7 +96,7 @@ void QtIndexingProgressDialog::updateErrorCount(size_t errorCount, size_t fatalC
 
 void QtIndexingProgressDialog::onHidePressed()
 {
-	emit visibleChanged(false);
+	Q_EMIT visibleChanged(false);
 }
 
 void QtIndexingProgressDialog::onStopPressed()
@@ -109,7 +109,7 @@ void QtIndexingProgressDialog::onStopPressed()
 
 void QtIndexingProgressDialog::closeEvent(QCloseEvent*  /*event*/)
 {
-	emit visibleChanged(false);
+	Q_EMIT visibleChanged(false);
 }
 
 void QtIndexingProgressDialog::setGeometries()

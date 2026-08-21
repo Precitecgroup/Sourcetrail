@@ -31,7 +31,7 @@ protected:
 	void handleNext() override;
 	void handleClose() override;
 	
-private slots:
+private Q_SLOTS:
 	void onNameChanged(const QString& text);
 	
 private:

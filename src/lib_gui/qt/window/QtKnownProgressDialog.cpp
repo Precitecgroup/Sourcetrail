@@ -36,10 +36,10 @@ QSize QtKnownProgressDialog::sizeHint() const
 
 void QtKnownProgressDialog::closeEvent(QCloseEvent*  /*event*/)
 {
-	emit visibleChanged(false);
+	Q_EMIT visibleChanged(false);
 }
 
 void QtKnownProgressDialog::onHidePressed()
 {
-	emit visibleChanged(false);
+	Q_EMIT visibleChanged(false);
 }

@@ -17,7 +17,7 @@ void QtAutocompletionModel::setMatchList(const std::vector<SearchMatch>& matchLi
 {
 	size_t rowCount = std::max(m_matchList.size(), matchList.size());
 	m_matchList = matchList;
-	emit dataChanged(index(0, 0), index(static_cast<int>(rowCount - 1), 5));
+	Q_EMIT dataChanged(index(0, 0), index(static_cast<int>(rowCount - 1), 5));
 }
 
 int QtAutocompletionModel::rowCount(const QModelIndex& parent) const
@@ -446,7 +446,7 @@ void QtAutocompletionList::onHighlighted(const QModelIndex& index)
 	const SearchMatch* match = getSearchMatchAt(index.row());
 	if (match)
 	{
-		emit matchHighlighted(*match);
+		Q_EMIT matchHighlighted(*match);
 	}
 }
 
@@ -455,6 +455,6 @@ void QtAutocompletionList::onActivated(const QModelIndex& index)
 	const SearchMatch* match = getSearchMatchAt(index.row());
 	if (match)
 	{
-		emit matchActivated(*match);
+		Q_EMIT matchActivated(*match);
 	}
 }

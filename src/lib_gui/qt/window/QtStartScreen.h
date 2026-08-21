@@ -17,7 +17,7 @@ public:
 	void setProjectPath(const FilePath& projectFilePath);
 	FilePath projectPath() const;
 
-signals:
+Q_SIGNALS:
 	void removeClicked();
 	
 protected:
@@ -37,11 +37,11 @@ public:
 	
 	QSize sizeHint() const override;
 
-signals:
+Q_SIGNALS:
 	void openOpenProjectDialog();
 	void openNewProjectDialog();
 
-private slots:
+private Q_SLOTS:
 	void handleButtonClicked();
 	void handleButtonRemoved();
 	

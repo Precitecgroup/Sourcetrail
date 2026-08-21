@@ -22,7 +22,7 @@ public:
 
 	void updateHistory(const std::vector<SearchMatch>& searchMatches, size_t currentIndex);
 
-private slots:
+private Q_SLOTS:
 	void buttonPressed();
 
 	void undoReleased();

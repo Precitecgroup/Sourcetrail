@@ -50,7 +50,7 @@ protected:
 
 	QtTextEditDialog* m_filesDialog = nullptr;
 
-protected slots:
+protected Q_SLOTS:
 	void filesButtonClicked();
 	void closedFilesDialog();
 

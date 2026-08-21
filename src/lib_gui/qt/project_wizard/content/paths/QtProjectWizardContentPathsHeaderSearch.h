@@ -21,7 +21,7 @@ public:
 	void load() override;
 	void save() override;
 
-private slots:
+private Q_SLOTS:
 	void detectIncludesButtonClicked();
 	void validateIncludesButtonClicked();
 	void finishedSelectDetectIncludesRootPathsDialog();

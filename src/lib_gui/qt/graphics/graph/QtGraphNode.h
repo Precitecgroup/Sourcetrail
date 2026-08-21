@@ -24,7 +24,7 @@ class QtGraphNode
 	Q_PROPERTY(qreal opacity READ opacity WRITE setOpacity)
 	Q_PROPERTY(QSize size READ size WRITE setSize)
 
-public slots:
+public Q_SLOTS:
 	void blendIn();
 	void blendOut();
 

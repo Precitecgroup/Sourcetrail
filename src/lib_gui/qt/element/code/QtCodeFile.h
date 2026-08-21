@@ -73,7 +73,7 @@ public:
 
 	void copySelection();
 
-public slots:
+public Q_SLOTS:
 	void clickedMinimizeButton();
 	void clickedSnippetButton();
 	void clickedMaximizeButton();
