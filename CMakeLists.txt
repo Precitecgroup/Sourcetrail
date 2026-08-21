@@ -19,7 +19,7 @@ if (isVcpkgBuild)
 		# Don't print package usages:
 		--no-print-usage
 
-		# Prevent rebuilding after a compiler update:		
+		# Prevent rebuilding after a compiler update:
 		--x-abi-tools-use-exact-versions
 		
 		# Clean everything except sources:
@@ -28,11 +28,19 @@ if (isVcpkgBuild)
 	)
 endif()
 
+# Prevent Qt Creator from disrupting system builds:
+# See: https://www.qt.io/blog/qt-creator-cmake-package-manager-auto-setup
+# Note: Can also be disabled via:
+# - Preferences > CMake > General > Package manager auto setup
+# - Projects > Project Settings > CMake > Package manager auto setup
+
+set(QT_CREATOR_SKIP_PACKAGE_MANAGER_SETUP ON)
+
 ###############################################################################
 # Project
 ###############################################################################
 
-project(Sourcetrail VERSION 2026.6.30 HOMEPAGE_URL "http://sourcetrail.de")
+project(Sourcetrail VERSION 2026.8.21 HOMEPAGE_URL "http://sourcetrail.de")
 
 include(cmake/Sourcetrail.cmake)
 
@@ -436,10 +444,11 @@ if (BUILD_CXX_LANGUAGE_PACKAGE)
 	# With the LLVM-overlay-port in place, we can use the exact same LLVM version 
 	# for system- and vcpkg-build, so we don't accept a range anymore, but only a
 	# single version.
-	
-	set(CLANG_MIN_VERSION 21)
+	#
+	# Use a minimum version to prevent picking up newer LLVM/Clang versions:
+	set(CLANG_MIN_VERSION 21.1)
 	set(CLANG_MAX_VERSION 22)
-	find_package(Clang CONFIG REQUIRED) # Minimum version and/or version range xx...<yy doesn't work.
+	find_package(Clang ${CLANG_MIN_VERSION} CONFIG REQUIRED) # Version range xx...<yy doesn't work.
 	message(STATUS "Found LLVM: ${LLVM_VERSION}") # ${LLVM_INSTALL_PREFIX} ${CLANG_INSTALL_PREFIX}")
 	checkVersionRange("Clang" ${LLVM_VERSION} ${CLANG_MIN_VERSION} ${CLANG_MAX_VERSION})
 

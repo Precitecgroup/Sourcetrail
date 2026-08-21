@@ -54,9 +54,9 @@ By sponsoring me with **$10 per month**, you will gain access to the following *
 
 |Name   |System|Vcpkg |
 |-------|------|------|
-|Qt6    |6.9.2 |6.11.1|
-|Boost  |1.88.0|1.91.0|
-|SQLite3|3.46.1|3.53.2|
+|Qt6    |6.10.2 |6.11.1|
+|Boost  |1.90.0|1.91.0|
+|SQLite3|3.46.1|3.53.4|
 |TinyXML|2.6.2 |2.6.2 |
 
 **C++**
@@ -77,8 +77,8 @@ By sponsoring me with **$10 per month**, you will gain access to the following *
 **Tests**
 |Name  |System|Vcpkg |
 |------|------|------|
-|Catch2|3.7.1 |3.15.1|
-|GTest |1.17.0|1.17.0|
+|Catch2|3.7.1 |3.15.3|
+|GTest |1.17.0|1.18.0|
 
 ### Changes
 
@@ -241,7 +241,7 @@ $ cmake --build .
 
 ### Linux
 
-To compile it under (K)ubuntu 25.10:
+To compile it under (K)ubuntu 26.04:
 * Install the required dependencies with `scripts/install-system-build-dependencies.sh`.
 
 Prepare the build:

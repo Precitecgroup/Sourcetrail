@@ -2,7 +2,7 @@
 
 # Adapted from https://wiki.qt.io/Building_Qt_6_from_Git:
 
-sudo apt install g++-15 build-essential git cmake ninja-build perl python3
+sudo apt install g++-16 build-essential git cmake ninja-build perl python3
 
 # Adapted from https://doc.qt.io/qt-6/linux-requirements.html:
 

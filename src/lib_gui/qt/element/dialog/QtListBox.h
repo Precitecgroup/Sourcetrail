@@ -1,17 +1,18 @@
 #ifndef QT_LIST_BOX_H
 #define QT_LIST_BOX_H
 
+#include "FilePath.h"
+#include "QtListBoxItem.h"
+
 #include <QFrame>
 #include <QListWidget>
 
-#include "FilePath.h"
 
 class QHBoxLayout;
 class QListWidgetItem;
 class QPushButton;
 
 class QtTextEditDialog;
-class QtListBoxItem;
 
 class QtListWidget: public QListWidget
 {
