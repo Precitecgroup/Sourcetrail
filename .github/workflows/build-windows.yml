@@ -1,0 +1,101 @@
+name: Build Windows
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: build-windows-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Windows (vcpkg-release)
+    runs-on: windows-latest
+    # Cold vcpkg builds (especially LLVM) can take several hours.
+    timeout-minutes: 360
+
+    env:
+      VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
+      BUILD_DIR: ${{ github.workspace }}/build/vcpkg-release
+
+    steps:
+      - name: Enable Git symlinks
+        run: git config --global core.symlinks true
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Free disk space
+        shell: pwsh
+        run: |
+          $paths = @(
+            "$env:ProgramFiles\Android",
+            "$env:ProgramFiles\Unity",
+            "$env:ProgramFiles\Microsoft\AzureFunctionsCoreTools",
+            "$env:ProgramFiles\Microsoft SQL Server",
+            "$env:ProgramFiles (x86)\Microsoft SQL Server"
+          )
+          foreach ($path in $paths) {
+            if (Test-Path $path) {
+              Write-Host "Removing $path"
+              Remove-Item -LiteralPath $path -Recurse -Force -ErrorAction SilentlyContinue
+            }
+          }
+          Get-PSDrive -PSProvider FileSystem
+
+      - name: Export GitHub Actions cache environment variables
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
+            core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+
+      - name: Setup MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Setup CMake and Ninja
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: "~3.31.0"
+
+      - name: Bootstrap vcpkg
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "vcpkg/vcpkg.exe")) {
+            & .\vcpkg\bootstrap-vcpkg.bat -disableMetrics
+          }
+
+      - name: Configure
+        shell: pwsh
+        # Override preset binaryDir so the build stays inside the workspace.
+        run: cmake --preset vcpkg-release -B "$env:BUILD_DIR"
+
+      - name: Build
+        shell: pwsh
+        run: cmake --build "$env:BUILD_DIR" --parallel
+
+      - name: Package
+        shell: pwsh
+        working-directory: ${{ env.BUILD_DIR }}
+        run: cpack -G ZIP
+
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: Sourcetrail-Windows-x64
+          path: ${{ env.BUILD_DIR }}/Sourcetrail-*.zip
+          if-no-files-found: error
