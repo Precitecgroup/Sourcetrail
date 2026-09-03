@@ -23,6 +23,8 @@ jobs:
 
     env:
       VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
+      # Build only Release packages (halves LLVM/Qt disk vs debug+release).
+      VCPKG_BUILD_TYPE: release
       BUILD_DIR: ${{ github.workspace }}/build/vcpkg-release
 
     steps:
@@ -107,11 +109,9 @@ jobs:
       - name: Configure
         shell: pwsh
         # C++ only: skip Java indexer (no JDK/Maven/java_indexer).
-        # Release-only triplet halves LLVM/Qt disk use vs debug+release.
         run: >
           cmake --preset vcpkg-release
           -B "$env:BUILD_DIR"
-          -DVCPKG_TARGET_TRIPLET=ci-windows-static-md
           -DBUILD_JAVA_LANGUAGE_PACKAGE=OFF
 
       - name: Build

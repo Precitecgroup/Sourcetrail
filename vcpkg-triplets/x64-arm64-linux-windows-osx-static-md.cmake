@@ -21,6 +21,11 @@ set(VCPKG_LIBRARY_LINKAGE static)
 # Set dynamic linking for the C runtime library (CRT):
 set(VCPKG_CRT_LINKAGE dynamic)
 
+# Optional release-only builds (e.g. CI sets VCPKG_BUILD_TYPE=release to cut disk use):
+if (DEFINED ENV{VCPKG_BUILD_TYPE} AND NOT "$ENV{VCPKG_BUILD_TYPE}" STREQUAL "")
+	set(VCPKG_BUILD_TYPE "$ENV{VCPKG_BUILD_TYPE}")
+endif()
+
 # Prevent Catch2 from intercepting JVM signals:
 # https://github.com/catchorg/Catch2/blob/devel/docs/cmake-integration.md#catch_config_-customization-options-in-cmake
 if (PORT STREQUAL "catch2")
