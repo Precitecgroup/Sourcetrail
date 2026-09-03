@@ -36,29 +36,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Free disk space
-        shell: pwsh
-        run: |
-          Write-Host "=== Disk space before cleanup ==="
-          Get-PSDrive -PSProvider FileSystem | Format-Table -AutoSize
-
-          $paths = @(
-            "$env:ProgramFiles\Android"
-          )
-          foreach ($path in $paths) {
-            Get-Item -Path $path -ErrorAction SilentlyContinue | ForEach-Object {
-              Write-Host "Removing $($_.FullName)"
-              Remove-Item -LiteralPath $_.FullName -Recurse -Force -ErrorAction SilentlyContinue
-            }
-          }
-
-          if (Get-Command docker -ErrorAction SilentlyContinue) {
-            docker system prune -af 2>$null
-          }
-
-          Write-Host "=== Disk space after cleanup ==="
-          Get-PSDrive -PSProvider FileSystem | Format-Table -AutoSize
-
       - name: Export GitHub Actions cache environment variables
         uses: actions/github-script@v8
         with:
