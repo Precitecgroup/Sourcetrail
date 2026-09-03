@@ -1,0 +1,121 @@
+name: Build Linux
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: build-linux-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Linux (vcpkg-release)
+    # System packages in the README target Ubuntu 26.04; on 24.04 use vcpkg.
+    runs-on: ubuntu-24.04
+    # Cold vcpkg builds (especially LLVM) can take several hours.
+    timeout-minutes: 360
+
+    env:
+      VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
+      # Build only Release packages (halves LLVM/Qt disk vs debug+release).
+      VCPKG_BUILD_TYPE: release
+      BUILD_DIR: ${{ github.workspace }}/build/vcpkg-release
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          submodules: recursive
+
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
+
+      - name: Export GitHub Actions cache environment variables
+        uses: actions/github-script@v8
+        with:
+          script: |
+            core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
+            core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+
+      - name: Install system dependencies for vcpkg/Qt
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            ninja-build \
+            pkg-config \
+            autoconf-archive \
+            python3 \
+            python3-jinja2 \
+            python3-venv \
+            libfontconfig1-dev \
+            libfreetype-dev \
+            libx11-dev \
+            libx11-xcb-dev \
+            libxext-dev \
+            libxfixes-dev \
+            libxi-dev \
+            libxrender-dev \
+            libxcb1-dev \
+            libxcb-cursor-dev \
+            libxcb-glx0-dev \
+            libxcb-keysyms1-dev \
+            libxcb-image0-dev \
+            libxcb-shm0-dev \
+            libxcb-icccm4-dev \
+            libxcb-sync-dev \
+            libxcb-xfixes0-dev \
+            libxcb-shape0-dev \
+            libxcb-randr0-dev \
+            libxcb-render-util0-dev \
+            libxcb-util-dev \
+            libxcb-xinerama0-dev \
+            libxcb-xkb-dev \
+            libxkbcommon-dev \
+            libxkbcommon-x11-dev \
+            libglu1-mesa-dev \
+            libegl1-mesa-dev
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: "~3.31.0"
+
+      - name: Bootstrap vcpkg
+        run: |
+          if [ ! -x vcpkg/vcpkg ]; then
+            ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
+          fi
+
+      - name: Configure
+        # C++ only: skip Java indexer (no JDK/Maven/java_indexer).
+        run: >
+          cmake --preset vcpkg-release
+          -B "$BUILD_DIR"
+          -DBUILD_JAVA_LANGUAGE_PACKAGE=OFF
+
+      - name: Build
+        run: cmake --build "$BUILD_DIR" --parallel
+
+      - name: Package
+        working-directory: ${{ env.BUILD_DIR }}
+        run: cpack -G ZIP
+
+      - name: Upload package
+        uses: actions/upload-artifact@v6
+        with:
+          name: Sourcetrail-Linux-x64
+          path: ${{ env.BUILD_DIR }}/Sourcetrail-*.zip
+          if-no-files-found: error
