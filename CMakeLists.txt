@@ -21,10 +21,11 @@ if (isVcpkgBuild)
 
 		# Prevent rebuilding after a compiler update:
 		--x-abi-tools-use-exact-versions
-		
-		# Clean everything except sources:
-		#--clean-downloads-after-build
-		#--clean-packages-after-build
+
+		# Drop intermediate trees after each package so large ports
+		# (LLVM, Qt) do not accumulate tens of GB on constrained CI disks:
+		--clean-buildtrees-after-build
+		--clean-downloads-after-build
 	)
 endif()
 

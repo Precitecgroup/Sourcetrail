@@ -14,7 +14,10 @@ concurrency:
 jobs:
   build:
     name: Windows (vcpkg-release)
-    runs-on: windows-latest
+    # windows-2022 still provides a large secondary disk for the workspace.
+    # windows-2025 / windows-latest often only have ~14–33 GB free, which is
+    # not enough for a cold LLVM+Qt vcpkg build.
+    runs-on: windows-2022
     # Cold vcpkg builds (especially LLVM) can take several hours.
     timeout-minutes: 360
 
@@ -34,20 +37,39 @@ jobs:
       - name: Free disk space
         shell: pwsh
         run: |
+          Write-Host "=== Disk space before cleanup ==="
+          Get-PSDrive -PSProvider FileSystem | Format-Table -AutoSize
+
           $paths = @(
             "$env:ProgramFiles\Android",
+            "$env:ProgramFiles (x86)\Android",
             "$env:ProgramFiles\Unity",
             "$env:ProgramFiles\Microsoft\AzureFunctionsCoreTools",
             "$env:ProgramFiles\Microsoft SQL Server",
-            "$env:ProgramFiles (x86)\Microsoft SQL Server"
+            "$env:ProgramFiles (x86)\Microsoft SQL Server",
+            "$env:ProgramFiles\dotnet\sdk\8.*",
+            "$env:ProgramFiles\dotnet\sdk\7.*",
+            "$env:ProgramFiles\dotnet\sdk\6.*",
+            "$env:ProgramFiles (x86)\Microsoft Visual Studio\2019",
+            "$env:ProgramFiles\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation",
+            "$env:ProgramData\Microsoft\VisualStudio\Packages",
+            "C:\hostedtoolcache\windows\CodeQL",
+            "C:\hostedtoolcache\windows\go",
+            "C:\hostedtoolcache\windows\Python"
           )
           foreach ($path in $paths) {
-            if (Test-Path $path) {
-              Write-Host "Removing $path"
-              Remove-Item -LiteralPath $path -Recurse -Force -ErrorAction SilentlyContinue
+            Get-Item -Path $path -ErrorAction SilentlyContinue | ForEach-Object {
+              Write-Host "Removing $($_.FullName)"
+              Remove-Item -LiteralPath $_.FullName -Recurse -Force -ErrorAction SilentlyContinue
             }
           }
-          Get-PSDrive -PSProvider FileSystem
+
+          if (Get-Command docker -ErrorAction SilentlyContinue) {
+            docker system prune -af 2>$null
+          }
+
+          Write-Host "=== Disk space after cleanup ==="
+          Get-PSDrive -PSProvider FileSystem | Format-Table -AutoSize
 
       - name: Export GitHub Actions cache environment variables
         uses: actions/github-script@v8
@@ -60,12 +82,6 @@ jobs:
         uses: TheMrMilchmann/setup-msvc-dev@v4
         with:
           arch: x64
-
-      - name: Setup Java
-        uses: actions/setup-java@v5
-        with:
-          distribution: temurin
-          java-version: "21"
 
       - name: Setup CMake and Ninja
         uses: lukka/get-cmake@latest
@@ -81,8 +97,13 @@ jobs:
 
       - name: Configure
         shell: pwsh
-        # Override preset binaryDir so the build stays inside the workspace.
-        run: cmake --preset vcpkg-release -B "$env:BUILD_DIR"
+        # C++ only: skip Java indexer (no JDK/Maven/java_indexer).
+        # Release-only triplet halves LLVM/Qt disk use vs debug+release.
+        run: >
+          cmake --preset vcpkg-release
+          -B "$env:BUILD_DIR"
+          -DVCPKG_TARGET_TRIPLET=ci-windows-static-md
+          -DBUILD_JAVA_LANGUAGE_PACKAGE=OFF
 
       - name: Build
         shell: pwsh
@@ -99,4 +120,3 @@ jobs:
           name: Sourcetrail-Windows-x64
           path: ${{ env.BUILD_DIR }}/Sourcetrail-*.zip
           if-no-files-found: error
-

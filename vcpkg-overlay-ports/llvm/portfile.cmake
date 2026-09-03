@@ -38,8 +38,13 @@ vcpkg_cmake_configure(
 		-DPACKAGE_VERSION=${VERSION}
 		
 		-DLLVM_BUILD_TOOLS=OFF
-		-DLLVM_INCLUDE_TOOLS=ON
+		-DLLVM_INCLUDE_TOOLS=OFF
 		-DLLVM_TOOLS_INSTALL_DIR:PATH=tools/llvm
+
+		# Sourcetrail only links against Clang/LLVM libraries; skip clang.exe,
+		# clang-format.exe, diagtool, etc. to cut peak disk usage on CI.
+		-DCLANG_BUILD_TOOLS=OFF
+		-DCLANG_INCLUDE_TOOLS=OFF
 
 		-DLLVM_ENABLE_ZLIB=OFF
 		-DLLVM_ENABLE_ZSTD=OFF
